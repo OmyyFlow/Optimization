@@ -10,8 +10,9 @@ int main (){
     int n = 9;
     int m = 3;
     int p[] = {8,5,7,9,1,4,2,3,6};
-    //int nn = sizeof(p) / sizeof(p[0]);
+    //int n = sizeof(p) / sizeof(p[0]);
     qsort(p, n, sizeof(int), comparar);
+    
     //imprimir_array(p, n);
     
     int c_t[n]; //Tiempo de completés de cada trabajo
@@ -19,24 +20,32 @@ int main (){
     
     int i;
     //Asignar primeros m trabajos a las m maquinas
+    printf("Agregar los primeros m trabajos a las m maquinas\n");
     for(i=0; i<m; i++){
         c_t[i] = p[i];
         C_m[i] = c_t[i];
+        printf("Trabajo %d asignado a la maquina %d\n", i+1, i+1);
     }
     
     qsort(C_m, m, sizeof(int), creciente);
-    //imprimir_array(C_m, m);
-    
+    printf("Carga de las máquinas: ");
+    imprimir_array(C_m, m);
+    printf("\n\n");
     //asignar siguientes trabajos 
     for(i=m; i<n; i++){
-        printf("%d + %d: ",C_m[0], p[i]);
+        printf("Asignar trabajo [%d] con p=[%d] a la máquina con carga: [%d]\n",i+1, p[i], C_m[0]);
         C_m[0] = C_m[0] + p[i];
-        printf("%d \n",C_m[0], m);
+        //printf("%d \n",C_m[0], m);
         min_C_m(C_m);
+        printf("Actualizando cargas:\n");
+        imprimir_array(C_m, m);
+        printf("\n\n");
     }
-    printf("\n");
+    printf("---Trabajos asignados---");
+    printf("\nTiempos de completés de las maquinas:\n");
     imprimir_array(C_m, m);
     
+    printf("\n\n===> Cmax = %d", C_m[m-1]);
     return 0;
 }
 
@@ -50,7 +59,7 @@ int creciente(const void* a, const void* b) {
 
 void imprimir_array(int array[], int tam){
     for(int i=0; i<tam; i++){
-        printf("%d ", array[i]);
+        printf("[%d] ", array[i]);
     }
 }
 
