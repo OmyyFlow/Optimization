@@ -2,8 +2,9 @@
 #include <stdlib.h>
 
 int FFD(int p[], int n, int c);
-void mergesort
-
+void mergesort(int a[], int l, int r);
+merge(int a[], int l, int mid, int r);
+  
 int main(){
   int p[] = {1, 2, 9, 6, 5, 4, 7, 1, 3, 8}; //Cargas
   int c = 10; //Capacidad de cada bin
@@ -22,7 +23,50 @@ int FFD(int p[], int n, int c){
     cargas[i] = c;
   }
 
+  mergesort()
   
 
   return cant_bins;
 }  
+
+void mergesort(int a[], int l, int r) {
+    if (l < r) {
+        int mid = (l + r) / 2; // calcula el medio entre l y r
+        mergesort(a, l, mid);    // Llamada recursiva para la mitad izquierda
+        mergesort(a, mid + 1, r); // Llamada recursiva para la mitad derecha
+        merge(a, l, mid, r);      // Mezcla las dos mitades ordenadas
+    }
+}
+
+void merge(int a[], int l, int mid, int r) {
+    int temp[r - l + 1];  // Arreglo temporal para la fusión
+    int i = l, j = mid + 1, k = 0;
+
+    while (i <= mid && j <= r) { // Mezcla mientras ambas mitades tengan elementos
+        if (a[i] > a[j]) { //compara para asignar al arreglo temporal
+            temp[k] = a[i];//
+            i++;
+        }
+        else {
+            temp[k] = a[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i <= mid) { // Copia los elementos restantes de la mitad izquierda
+        temp[k] = a[i];
+        i++;
+        k++;
+    }
+
+    while (j <= r) { // Copia los elementos restantes de la mitad derecha
+        temp[k] = a[j];
+        j++;
+        k++;
+    }
+
+    for (i = l; i <= r; i++) { // Copia los elementos fusionados de nuevo al arreglo original
+        a[i] = temp[i - l];
+    }
+}
