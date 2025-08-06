@@ -7,7 +7,7 @@ void mergesort(int a[], int l, int r);
 void merge(int a[], int l, int mid, int r);
   
 int main(){
-  int p[] = {1, 2, 9, 6, 5, 4, 7, 1, 3, 8}; //Cargas
+  int p[] = {2, 9, 6, 5, 4, 7, 1, 3, 8}; //Cargas
   int c = 15; //Capacidad de cada bin
   int n = sizeof(p) / sizeof(p[0]);//cant de objetos
 
