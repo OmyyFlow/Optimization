@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int FFD(int p[], int n, int c);
+int FirstFit(int p[], int n, int c);
 void mergesort(int a[], int l, int r);
 merge(int a[], int l, int mid, int r);
   
@@ -16,16 +17,33 @@ int main(){
 }
 
 int FFD(int p[], int n, int c){
+  mergesort(p, 0, n-1);
+  return FirstFit(p, n, c) 
+}
+
+int FirstFit(int p[], int n, int c){
   int cant_bins = 0;
-  int cargas[n];
+  int cargas[n]; //a lo mas n bins
 
-  for(int i=0, i<n, i++){
-    cargas[i] = c;
-  }
+  cargas[0] = cargas[0] - p[0]; //aperturar un bin y asignar el primer objeto
+  cant_bins++;//apertura del bin
 
-  mergesort()
+  for (int i=1, i<n, i++){
+    int j; // var para iterar en los bins abiertos
+    for (j = 0; j < cant_bins; j++){
+        if(cargas[j] >= p[i]){
+            cargas[j] -= p[i]
+            break;
+        }
+    }
+
+    if (j == cant_bins){
+      cargas[j] = c - p[i];
+      cant_bins++;
+    }
+      
+  } 
   
-
   return cant_bins;
 }  
 
