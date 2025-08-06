@@ -4,35 +4,37 @@
 int FFD(int p[], int n, int c);
 int FirstFit(int p[], int n, int c);
 void mergesort(int a[], int l, int r);
-merge(int a[], int l, int mid, int r);
+void merge(int a[], int l, int mid, int r);
   
 int main(){
   int p[] = {1, 2, 9, 6, 5, 4, 7, 1, 3, 8}; //Cargas
-  int c = 10; //Capacidad de cada bin
-  int n = sizeof(weight) / sizeof(weight[0]);//cant de objetos
+  int c = 15; //Capacidad de cada bin
+  int n = sizeof(p) / sizeof(p[0]);//cant de objetos
 
-  printf("Cantidad de bins usados en la instancia: %d", FDD(p,n,c));
+  printf("\t\t\tINSTANCIA");
+  printf("\nn=%d\tc=%d\n",n, c);
+  printf("\nCantidad de bins usados en la instancia: %d", FFD(p,n,c));
   
   return 0;
 }
 
 int FFD(int p[], int n, int c){
   mergesort(p, 0, n-1);
-  return FirstFit(p, n, c) 
+  return FirstFit(p, n, c);
 }
 
 int FirstFit(int p[], int n, int c){
   int cant_bins = 0;
   int cargas[n]; //a lo mas n bins
 
-  cargas[0] = cargas[0] - p[0]; //aperturar un bin y asignar el primer objeto
+  cargas[0] = c - p[0]; //aperturar un bin y asignar el primer objeto
   cant_bins++;//apertura del bin
 
-  for (int i=1, i<n, i++){
+  for (int i = 1; i < n; i++) {
     int j; // var para iterar en los bins abiertos
     for (j = 0; j < cant_bins; j++){
         if(cargas[j] >= p[i]){
-            cargas[j] -= p[i]
+            cargas[j] -= p[i];
             break;
         }
     }
