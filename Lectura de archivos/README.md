@@ -1,0 +1,1 @@
+El programa sirve para leer un archivo txt que contiene un formato especifico, cada salto de linea corresponde a un valor, el primer valor es el numero de objetos (trabajos), el siguiente es el numero de máquinas (o vehiculos) y los demas corresponden a los tiempos de procesamiento de cada objeto.
